@@ -10,12 +10,13 @@
 ## Usage
 
 ```bash
-temp="$(mktemp)"
+# Install signing keyring
+keyring="$(mktemp)"
 version="$(curl -L https://github.com/radxa-pkg/radxa-archive-keyring/releases/latest/download/VERSION)"
-curl -L --output "$temp" "https://github.com/radxa-pkg/radxa-archive-keyring/releases/latest/download/radxa-archive-keyring_${version}_all.deb"
-sudo dpkg -i "$temp"
-rm -f "$temp"
-source /etc/os-release
-sudo tee /etc/apt/sources.list.d/20-radxa.list <<< "deb [signed-by=/usr/share/keyrings/radxa-archive-keyring.gpg] https://radxa-repo.github.io/rk3528a-bullseye-test/ $VERSION_CODENAME main"
+curl -L --output "$keyring" "https://github.com/radxa-pkg/radxa-archive-keyring/releases/latest/download/radxa-archive-keyring_${version}_all.deb"
+sudo dpkg -i "$keyring"
+rm -f "$keyring"
+# Add apt package repo
+sudo tee /etc/apt/sources.list.d/20-radxa.list <<< "deb [signed-by=/usr/share/keyrings/radxa-archive-keyring.gpg] https://radxa-repo.github.io/rk3528a-bullseye-test/ rk3528a-bullseye-test main"
 sudo apt-get update
 ```

@@ -12,7 +12,7 @@ jobs:
     - name: "Checkout rsdk"
       uses: "actions/checkout@v4"
       with:
-        ref: "f5d00c6fb3513f7310f1d018824db9e930bd6eff"
+        ref: "3639b5bf9a247b559458bc240375acbf549b6a7f"
         repository: "RadxaOS-SDK/rsdk"
     - name: "Checkout current repo"
       uses: "actions/checkout@v4"
@@ -46,8 +46,6 @@ jobs:
         
         suites=(
             "rk3528a-bullseye-test"
-            "amlogic-rk3528a-bullseye-test"
-            "rockchip-rk3528a-bullseye-test"
         )
         
         pushd .infra-repo

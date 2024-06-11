@@ -37,10 +37,12 @@ jobs:
         
         # Workaround https://github.com/aptly-dev/aptly/issues/1297
         git clone -b 1297-hack https://github.com/RadxaOS-SDK/aptly.git /tmp/aptly
+        export PATH="$HOME/go/bin:$PATH"
         pushd /tmp/aptly
         make release
         popd
-        export PATH=/tmp/aptly/xc-out/*/linux_amd64:"$PATH"
+        APTLY_PATH=/tmp/aptly/xc-out/*/linux_amd64
+        export PATH="$APTLY_PATH:$PATH"
         
         git config --global user.name 'github-actions[bot]'
         git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
